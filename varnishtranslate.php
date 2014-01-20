@@ -3,7 +3,7 @@
 
 sub devicedetect {
 	unset req.http.X-UA-Device;
-	set req.http.X-UA-Device = "browser";
+	set req.http.X-UA-Device = "desktop";
 	# Handle that a cookie may override the detection alltogether.
 	if (req.http.Cookie ~ "(?i)X-UA-Device-force") {
 		/* ;?? means zero or one ;, non-greedy to match the first. */
@@ -23,16 +23,14 @@ $rules = json_decode($jsonRules);
 
 
 $phones = $rules->uaMatch->phones;
-echo returnVarnishRules($phones,"phone", false);
+echo returnVarnishRules($phones,"phone");
 
 $tablets = $rules->uaMatch->tablets;
-echo returnVarnishRules($tablets,"tablet");
+echo returnVarnishRules($tablets,"tablet",true);
 
 $desktop = $rules->uaMatch->browsers;
-echo returnVarnishRules($desktop,"desktop");
+echo returnVarnishRules($desktop,"desktop",true);
 
-$os = $rules->uaMatch->browsers;
-echo returnVarnishRules($phones,"os");
 ?>
 	}
 }
@@ -41,11 +39,8 @@ echo returnVarnishRules($phones,"os");
 
 
 <?
-function returnVarnishRules($rulesArray, $key, $else = true){
+function returnVarnishRules($rulesArray, $key, $concat = false){
 	$retString = "\t\t";
-	if ($else){
-		$retString .= "els";
-	}
 	$retString .= "if (\n";
 	$count = 0;
 	foreach($rulesArray as $rule){
@@ -58,7 +53,15 @@ function returnVarnishRules($rulesArray, $key, $else = true){
 		} 
 		$count++;
 	}
-	$retString .= "\t\t\tset req.http.X-UA-Device = \"$key\";\n";
+	if ($concat){
+		$retString .= "\t\t\tif (!(req.http.X-UA-Device ~ \"desktop\")){\n";
+		$retString .= "\t\t\t\tset req.http.X-UA-Device = req.http.X-UA-Device + \";$key\";\n";
+		$retString .= "\t\t\t}else{\n";
+		$retString .= "\t\t\t\tset req.http.X-UA-Device = \"$key\";\n";
+		$retString .= "\t\t\t}\n";
+	}else{
+		$retString .= "\t\t\tset req.http.X-UA-Device = \"$key\";\n";
+	}
 	$retString .= "\t\t}\n\n";
 
 	return $retString;
