@@ -21,13 +21,17 @@ $rules = json_decode($jsonRules);
 
 
 $phones = $rules->uaMatch->phones;
-echo returnVarnishRules($phones,"phone");
+echo returnVarnishRules($phones,"mobile");
+
+$mobileBrowsers = $rules->uaMatch->browsers;
+echo returnVarnishRules($mobileBrowsers,"mobile");
+
+$mobileOS = $rules->uaMatch->os;
+echo returnVarnishRules($mobileOS,"mobile");
 
 $tablets = $rules->uaMatch->tablets;
 echo returnVarnishRules($tablets,"tablet",true);
 
-#$desktop = $rules->uaMatch->browsers;
-#echo returnVarnishRules($desktop,"desktop",true);
 
 ?>
 	}
@@ -58,7 +62,7 @@ function returnVarnishRules($rulesArray, $key, $concat = false){
 		$retString .= "\t\t\t\tset req.http.X-UA-Device = \"$key\";\n";
 		$retString .= "\t\t\t}\n";
 	}else{
-		$retString .= "\t\t\tset req.http.X-UA-Device = \"$key\";\n";
+		$retString .= "\t\t\tset req.http.X-UA-Device = \"mobile;$key\";\n";
 	}
 	$retString .= "\t\t}\n\n";
 
