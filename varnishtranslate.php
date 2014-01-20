@@ -1,5 +1,3 @@
-<code>
-<pre>
 
 sub devicedetect {
 	unset req.http.X-UA-Device;
@@ -28,8 +26,8 @@ echo returnVarnishRules($phones,"phone");
 $tablets = $rules->uaMatch->tablets;
 echo returnVarnishRules($tablets,"tablet",true);
 
-$desktop = $rules->uaMatch->browsers;
-echo returnVarnishRules($desktop,"desktop",true);
+#$desktop = $rules->uaMatch->browsers;
+#echo returnVarnishRules($desktop,"desktop",true);
 
 ?>
 	}
@@ -45,7 +43,7 @@ function returnVarnishRules($rulesArray, $key, $concat = false){
 	$count = 0;
 	foreach($rulesArray as $rule){
 		$retString .= "\t\t";
-		$retString .= "   (req.http.User-Agent ~ \"$rule\")"; 
+		$retString .= "   (req.http.User-Agent ~ \"(?i)$rule\")"; 
 		if ($count < (count((array)$rulesArray) -1)){
 			$retString .= " ||\n";
 		}else{
@@ -69,5 +67,3 @@ function returnVarnishRules($rulesArray, $key, $concat = false){
 }
 
 ?>
-</pre>
-</code>
