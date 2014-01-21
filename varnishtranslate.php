@@ -19,7 +19,6 @@ $jsonRules =  file_get_contents("https://raw.github.com/serbanghita/Mobile-Detec
 $rules = json_decode($jsonRules);
 
 
-
 $phones = $rules->uaMatch->phones;
 echo returnVarnishRules($phones,"mobile");
 
@@ -40,7 +39,7 @@ echo returnVarnishRules($tablets,"tablet",true);
 
 
 
-<?
+<?php
 function returnVarnishRules($rulesArray, $key, $tablet = false, $useElse = false){
 	$retString = "\t\t";
 	if ($useElse){
@@ -52,7 +51,7 @@ function returnVarnishRules($rulesArray, $key, $tablet = false, $useElse = false
 	$count = 0;
 	foreach($rulesArray as $rule){
 		$retString .= "\t\t";
-		$retString .= "   (req.http.User-Agent ~ \"(?i)$rule\")"; 
+		$retString .= "   (req.http.User-Agent ~ \"$rule\")"; 
 		if ($count < (count((array)$rulesArray) -1)){
 			$retString .= " ||\n";
 		}else{
