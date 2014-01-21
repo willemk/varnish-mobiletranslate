@@ -24,10 +24,10 @@ $phones = $rules->uaMatch->phones;
 echo returnVarnishRules($phones,"mobile");
 
 $mobileBrowsers = $rules->uaMatch->browsers;
-echo returnVarnishRules($mobileBrowsers,"mobile");
+echo returnVarnishRules($mobileBrowsers,"mobile",false, true);
 
 $mobileOS = $rules->uaMatch->os;
-echo returnVarnishRules($mobileOS,"mobile");
+echo returnVarnishRules($mobileOS,"mobile",false, true);
 
 $tablets = $rules->uaMatch->tablets;
 echo returnVarnishRules($tablets,"tablet",true);
@@ -41,9 +41,14 @@ echo returnVarnishRules($tablets,"tablet",true);
 
 
 <?
-function returnVarnishRules($rulesArray, $key, $concat = false){
+function returnVarnishRules($rulesArray, $key, $tablet = false, $useElse = false){
 	$retString = "\t\t";
-	$retString .= "if (\n";
+	if ($useElse){
+		$retString .= "elsif (\n";
+	}else{
+			
+		$retString .= "if (\n";
+	}
 	$count = 0;
 	foreach($rulesArray as $rule){
 		$retString .= "\t\t";
@@ -55,14 +60,10 @@ function returnVarnishRules($rulesArray, $key, $concat = false){
 		} 
 		$count++;
 	}
-	if ($concat){
-		$retString .= "\t\t\tif (!(req.http.X-UA-Device ~ \"desktop\")){\n";
-		$retString .= "\t\t\t\tset req.http.X-UA-Device = req.http.X-UA-Device + \";$key\";\n";
-		$retString .= "\t\t\t}else{\n";
-		$retString .= "\t\t\t\tset req.http.X-UA-Device = \"$key\";\n";
-		$retString .= "\t\t\t}\n";
-	}else{
+	if ($tablet){
 		$retString .= "\t\t\tset req.http.X-UA-Device = \"mobile;$key\";\n";
+	}else{
+		$retString .= "\t\t\tset req.http.X-UA-Device = \"$key\";\n";
 	}
 	$retString .= "\t\t}\n\n";
 

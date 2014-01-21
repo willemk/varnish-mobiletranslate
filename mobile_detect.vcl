@@ -30,7 +30,44 @@ sub devicedetect {
 		   (req.http.User-Agent ~ "(?i)IQ230|IQ444|IQ450|IQ440|IQ442|IQ441|IQ245|IQ256|IQ236|IQ255|IQ235|IQ245|IQ275|IQ240|IQ285|IQ280|IQ270|IQ260|IQ250") ||
 		   (req.http.User-Agent ~ "(?i)\b(SP-80|XT-930|SX-340|XT-930|SX-310|SP-360|SP60|SPT-800|SP-120|SPT-800|SP-140|SPX-5|SPX-8|SP-100|SPX-8|SPX-12)\b") ||
 		   (req.http.User-Agent ~ "(?i)Tapatalk|PDA;|SAGEM|\bmmp\b|pocket|\bpsp\b|symbian|Smartphone|smartfon|treo|up.browser|up.link|vodafone|\bwap\b|nokia|Series40|Series60|S60|SonyEricsson|N900|MAUI.*WAP.*Browser")) {
-			set req.http.X-UA-Device = "phone";
+			set req.http.X-UA-Device = "mobile";
+		}
+
+		elsif (
+		   (req.http.User-Agent ~ "(?i)\bCrMo\b|CriOS|Android.*Chrome/[.0-9]* (Mobile)?") ||
+		   (req.http.User-Agent ~ "(?i)\bDolfin\b") ||
+		   (req.http.User-Agent ~ "(?i)Opera.*Mini|Opera.*Mobi|Android.*Opera|Mobile.*OPR/[0-9.]+|Coast/[0-9.]+") ||
+		   (req.http.User-Agent ~ "(?i)Skyfire") ||
+		   (req.http.User-Agent ~ "(?i)IEMobile|MSIEMobile") ||
+		   (req.http.User-Agent ~ "(?i)fennec|firefox.*maemo|(Mobile|Tablet).*Firefox|Firefox.*Mobile") ||
+		   (req.http.User-Agent ~ "(?i)bolt") ||
+		   (req.http.User-Agent ~ "(?i)teashark") ||
+		   (req.http.User-Agent ~ "(?i)Blazer") ||
+		   (req.http.User-Agent ~ "(?i)Version.*Mobile.*Safari|Safari.*Mobile") ||
+		   (req.http.User-Agent ~ "(?i)Tizen") ||
+		   (req.http.User-Agent ~ "(?i)UC.*Browser|UCWEB") ||
+		   (req.http.User-Agent ~ "(?i)DiigoBrowser") ||
+		   (req.http.User-Agent ~ "(?i)Puffin") ||
+		   (req.http.User-Agent ~ "(?i)\bMercury\b") ||
+		   (req.http.User-Agent ~ "(?i)NokiaBrowser|OviBrowser|OneBrowser|TwonkyBeamBrowser|SEMC.*Browser|FlyFlow|Minimo|NetFront|Novarra-Vision|MQQBrowser|MicroMessenger")) {
+			set req.http.X-UA-Device = "mobile";
+		}
+
+		elsif (
+		   (req.http.User-Agent ~ "(?i)Android") ||
+		   (req.http.User-Agent ~ "(?i)blackberry|\bBB10\b|rim tablet os") ||
+		   (req.http.User-Agent ~ "(?i)PalmOS|avantgo|blazer|elaine|hiptop|palm|plucker|xiino") ||
+		   (req.http.User-Agent ~ "(?i)Symbian|SymbOS|Series60|Series40|SYB-[0-9]+|\bS60\b") ||
+		   (req.http.User-Agent ~ "(?i)Windows CE.*(PPC|Smartphone|Mobile|[0-9]{3}x[0-9]{3})|Window Mobile|Windows Phone [0-9.]+|WCE;") ||
+		   (req.http.User-Agent ~ "(?i)Windows Phone 8.0|Windows Phone OS|XBLWP7|ZuneWP7") ||
+		   (req.http.User-Agent ~ "(?i)\biPhone.*Mobile|\biPod|\biPad") ||
+		   (req.http.User-Agent ~ "(?i)MeeGo") ||
+		   (req.http.User-Agent ~ "(?i)Maemo") ||
+		   (req.http.User-Agent ~ "(?i)J2ME/|\bMIDP\b|\bCLDC\b") ||
+		   (req.http.User-Agent ~ "(?i)webOS|hpwOS") ||
+		   (req.http.User-Agent ~ "(?i)\bBada\b") ||
+		   (req.http.User-Agent ~ "(?i)BREW")) {
+			set req.http.X-UA-Device = "mobile";
 		}
 
 		if (
@@ -105,11 +142,7 @@ sub devicedetect {
 		   (req.http.User-Agent ~ "(?i)Hudl HT7S3") ||
 		   (req.http.User-Agent ~ "(?i)T-Hub2") ||
 		   (req.http.User-Agent ~ "(?i)Android.*\b97D\b|Tablet(?!.*PC)|ViewPad7|BNTV250A|MID-WCDMA|LogicPD Zoom2|\bA7EB\b|CatNova8|A1_07|CT704|CT1002|\bM721\b|rk30sdk|\bEVOTAB\b|SmartTabII10|SmartTab10|M758A|ET904")) {
-			if (!(req.http.X-UA-Device ~ "desktop")){
-				set req.http.X-UA-Device = req.http.X-UA-Device + ";tablet";
-			}else{
-				set req.http.X-UA-Device = "tablet";
-			}
+			set req.http.X-UA-Device = "mobile;tablet";
 		}
 
 	}
