@@ -1,4 +1,4 @@
-varnish Mobile Detect
+Varnish Mobile Detect
 =======================
 
 ###Goal:
