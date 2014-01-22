@@ -105,7 +105,7 @@ sub vcl_hash {
 
 ###Bugs & Features
 
-If you have any  [bug reports](#bugs), [features requests](#features) or want to [submit a pull requests](#pull-requests), please use the appropriate github tools. 
+If you have any  [bug reports](issues), [features requests](issues) or want to [submit a pull requests](pull), please use the appropriate github tools. 
 
 
 ###Thanks
