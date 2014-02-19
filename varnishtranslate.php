@@ -1,5 +1,13 @@
+<?php
+$jsonRules =  file_get_contents("https://raw.github.com/serbanghita/Mobile-Detect/master/Mobile_Detect.json");
 
+$rules = json_decode($jsonRules);
+
+?>
 sub devicedetect {
+	#Based on Mobile detect <?php echo $rules->version?>
+	
+	#https://github.com/serbanghita/Mobile-Detect
 	unset req.http.X-UA-Device;
 	set req.http.X-UA-Device = "desktop";
 	# Handle that a cookie may override the detection alltogether.
@@ -13,10 +21,6 @@ sub devicedetect {
 	} else {
 
 <?php
-
-$jsonRules =  file_get_contents("https://raw.github.com/serbanghita/Mobile-Detect/master/Mobile_Detect.json");
-
-$rules = json_decode($jsonRules);
 
 
 $phones = $rules->uaMatch->phones;

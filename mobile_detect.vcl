@@ -1,5 +1,6 @@
-
 sub devicedetect {
+	#Based on Mobile detect 2.7.8	
+	#https://github.com/serbanghita/Mobile-Detect
 	unset req.http.X-UA-Device;
 	set req.http.X-UA-Device = "desktop";
 	# Handle that a cookie may override the detection alltogether.
