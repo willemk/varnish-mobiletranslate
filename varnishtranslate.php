@@ -51,7 +51,7 @@ function returnVarnishRules($rulesArray, $key, $tablet = false, $useElse = false
 	$count = 0;
 	foreach($rulesArray as $rule){
 		$retString .= "\t\t";
-		$retString .= "   (req.http.User-Agent ~ \"$rule\")"; 
+		$retString .= "   (req.http.User-Agent ~ \"(?i)$rule\")"; 
 		if ($count < (count((array)$rulesArray) -1)){
 			$retString .= " ||\n";
 		}else{
