@@ -111,6 +111,15 @@ sub vcl_hash {
 
 ###Bugs & Features
 
+If you are running into issues with Varnish crashing, this is due to hitting the regex recursion limit. Adding the following to your varnish startup options will fix this:
+
+```
+ -p pcre_match_limit=100000 
+ -p pcre_match_limit_recursion=100000 
+ -p workspace_client=12M 
+ -p thread_pool_stack=192k
+```
+
 If you have any bug reports, feature request or want to submit a pull request, please use the appropriate github tools. 
 
 
