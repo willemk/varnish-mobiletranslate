@@ -67,6 +67,8 @@ echo returnVarnishRules($mobileOS,"mobile",false, true);
 $tablets = $rules->uaMatch->tablets;
 echo returnVarnishRules($tablets,"tablet",true);
 
+$mobileBots = array($rules->uaMatch->utilities->MobileBot);
+echo returnVarnishRules($mobileBots, 'mobile', false, true);
 
 ?>
 	}
