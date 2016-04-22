@@ -4,7 +4,7 @@ $jsonRules =  file_get_contents("https://raw.github.com/serbanghita/Mobile-Detec
 $rules = json_decode($jsonRules);
 
 ?>
-# Copyright (c) 2014, Willem Kappers
+# Copyright (c) 2016, Willem Kappers
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
