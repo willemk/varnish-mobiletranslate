@@ -61,14 +61,14 @@ sub devicedetect {
 $mobileBots = array($rules->uaMatch->utilities->MobileBot);
 echo returnVarnishRules($mobileBots, 'mobile', false);
 
-$mobileBrowsers = $rules->uaMatch->browsers;
-echo returnVarnishRules($mobileBrowsers, "mobile", false, true);
-
 $phones = $rules->uaMatch->phones;
 echo returnVarnishRules($phones, "mobile", false, true);
 
 $tablets = $rules->uaMatch->tablets;
 echo returnVarnishRules($tablets, "tablet", true, true);
+
+$mobileBrowsers = $rules->uaMatch->browsers;
+echo returnVarnishRules($mobileBrowsers, "mobile", false, true);
 
 $mobileOS = $rules->uaMatch->os;
 echo returnVarnishRules($mobileOS, "mobile", false, true);

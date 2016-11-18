@@ -51,31 +51,6 @@ sub devicedetect {
 		}
 
 		elsif (
-		   (req.http.User-Agent ~ "(?i)\bCrMo\b|CriOS|Android.*Chrome/[.0-9]* (Mobile)?") ||
-		   (req.http.User-Agent ~ "(?i)\bDolfin\b") ||
-		   (req.http.User-Agent ~ "(?i)Opera.*Mini|Opera.*Mobi|Android.*Opera|Mobile.*OPR/[0-9.]+|Coast/[0-9.]+") ||
-		   (req.http.User-Agent ~ "(?i)Skyfire") ||
-		   (req.http.User-Agent ~ "(?i)Mobile Safari/[.0-9]* Edge") ||
-		   (req.http.User-Agent ~ "(?i)IEMobile|MSIEMobile") ||
-		   (req.http.User-Agent ~ "(?i)fennec|firefox.*maemo|(Mobile|Tablet).*Firefox|Firefox.*Mobile|FxiOS") ||
-		   (req.http.User-Agent ~ "(?i)bolt") ||
-		   (req.http.User-Agent ~ "(?i)teashark") ||
-		   (req.http.User-Agent ~ "(?i)Blazer") ||
-		   (req.http.User-Agent ~ "(?i)Version.*Mobile.*Safari|Safari.*Mobile|MobileSafari") ||
-		   (req.http.User-Agent ~ "(?i)UC.*Browser|UCWEB") ||
-		   (req.http.User-Agent ~ "(?i)baiduboxapp") ||
-		   (req.http.User-Agent ~ "(?i)baidubrowser") ||
-		   (req.http.User-Agent ~ "(?i)DiigoBrowser") ||
-		   (req.http.User-Agent ~ "(?i)Puffin") ||
-		   (req.http.User-Agent ~ "(?i)\bMercury\b") ||
-		   (req.http.User-Agent ~ "(?i)Obigo") ||
-		   (req.http.User-Agent ~ "(?i)NF-Browser") ||
-		   (req.http.User-Agent ~ "(?i)NokiaBrowser|OviBrowser|OneBrowser|TwonkyBeamBrowser|SEMC.*Browser|FlyFlow|Minimo|NetFront|Novarra-Vision|MQQBrowser|MicroMessenger") ||
-		   (req.http.User-Agent ~ "(?i)Android.*PaleMoon|Mobile.*PaleMoon")) {
-			set req.http.X-UA-Device = "mobile";
-		}
-
-		elsif (
 		   (req.http.User-Agent ~ "(?i)\biPhone\b|\biPod\b") ||
 		   (req.http.User-Agent ~ "(?i)BlackBerry|\bBB10\b|rim[0-9]+") ||
 		   (req.http.User-Agent ~ "(?i)HTC|HTC.*(Sensation|Evo|Vision|Explorer|6800|8100|8900|A7272|S510e|C110e|Legend|Desire|T8282)|APX515CKT|Qtek9090|APA9292KT|HD_mini|Sensation.*Z710e|PG86100|Z715e|Desire.*(A8181|HD)|ADR6200|ADR6400L|ADR6425|001HT|Inspire 4G|Android.*\bEVO\b|T-Mobile G1|Z520m") ||
@@ -221,6 +196,31 @@ sub devicedetect {
 		   (req.http.User-Agent ~ "(?i)T-Hub2") ||
 		   (req.http.User-Agent ~ "(?i)Android.*\b97D\b|Tablet(?!.*PC)|BNTV250A|MID-WCDMA|LogicPD Zoom2|\bA7EB\b|CatNova8|A1_07|CT704|CT1002|\bM721\b|rk30sdk|\bEVOTAB\b|M758A|ET904|ALUMIUM10|Smartfren Tab|Endeavour 1010|Tablet-PC-4|Tagi Tab|\bM6pro\b|CT1020W|arc 10HD|\bTP750\b")) {
 			set req.http.X-UA-Device = "mobile;tablet";
+		}
+
+		elsif (
+		   (req.http.User-Agent ~ "(?i)\bCrMo\b|CriOS|Android.*Chrome/[.0-9]* (Mobile)?") ||
+		   (req.http.User-Agent ~ "(?i)\bDolfin\b") ||
+		   (req.http.User-Agent ~ "(?i)Opera.*Mini|Opera.*Mobi|Android.*Opera|Mobile.*OPR/[0-9.]+|Coast/[0-9.]+") ||
+		   (req.http.User-Agent ~ "(?i)Skyfire") ||
+		   (req.http.User-Agent ~ "(?i)Mobile Safari/[.0-9]* Edge") ||
+		   (req.http.User-Agent ~ "(?i)IEMobile|MSIEMobile") ||
+		   (req.http.User-Agent ~ "(?i)fennec|firefox.*maemo|(Mobile|Tablet).*Firefox|Firefox.*Mobile|FxiOS") ||
+		   (req.http.User-Agent ~ "(?i)bolt") ||
+		   (req.http.User-Agent ~ "(?i)teashark") ||
+		   (req.http.User-Agent ~ "(?i)Blazer") ||
+		   (req.http.User-Agent ~ "(?i)Version.*Mobile.*Safari|Safari.*Mobile|MobileSafari") ||
+		   (req.http.User-Agent ~ "(?i)UC.*Browser|UCWEB") ||
+		   (req.http.User-Agent ~ "(?i)baiduboxapp") ||
+		   (req.http.User-Agent ~ "(?i)baidubrowser") ||
+		   (req.http.User-Agent ~ "(?i)DiigoBrowser") ||
+		   (req.http.User-Agent ~ "(?i)Puffin") ||
+		   (req.http.User-Agent ~ "(?i)\bMercury\b") ||
+		   (req.http.User-Agent ~ "(?i)Obigo") ||
+		   (req.http.User-Agent ~ "(?i)NF-Browser") ||
+		   (req.http.User-Agent ~ "(?i)NokiaBrowser|OviBrowser|OneBrowser|TwonkyBeamBrowser|SEMC.*Browser|FlyFlow|Minimo|NetFront|Novarra-Vision|MQQBrowser|MicroMessenger") ||
+		   (req.http.User-Agent ~ "(?i)Android.*PaleMoon|Mobile.*PaleMoon")) {
+			set req.http.X-UA-Device = "mobile";
 		}
 
 		elsif (
