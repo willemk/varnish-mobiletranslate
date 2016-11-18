@@ -55,7 +55,7 @@ sub devicedetect {
 <?php
 
 /**
- * Mobile Bots visit sites alot. In order to calculate regex fast
+ * Mobile Bots visit sites a lot. In order to calculate regex fast
  * MobileBots must be first. Also it has much less expressions than Phones or Tablets
  */
 $mobileBots = array($rules->uaMatch->utilities->MobileBot);
@@ -64,14 +64,14 @@ echo returnVarnishRules($mobileBots, 'mobile', false);
 $mobileBrowsers = $rules->uaMatch->browsers;
 echo returnVarnishRules($mobileBrowsers, "mobile", false, true);
 
-$mobileOS = $rules->uaMatch->os;
-echo returnVarnishRules($mobileOS, "mobile", false, true);
-
 $phones = $rules->uaMatch->phones;
 echo returnVarnishRules($phones, "mobile", false, true);
 
 $tablets = $rules->uaMatch->tablets;
 echo returnVarnishRules($tablets, "tablet", true, true);
+
+$mobileOS = $rules->uaMatch->os;
+echo returnVarnishRules($mobileOS, "mobile", false, true);
 
 ?>
 }
